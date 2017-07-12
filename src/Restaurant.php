@@ -68,6 +68,22 @@
             $GLOBALS['DB']->exec("DELETE FROM restaurants;");
         }
 
+        static function find($search_id)
+        {
+            $returned_restaurants = $GLOBALS['DB']->prepare("SELECT * FROM restaurants WHERE id = :id");
+            $returned_restaurants->bindParam(':id', $search_id, PDO::PARAM_STR);
+            $returned_restaurants->execute();
+            foreach ($returned_restaurants as $restaurant) {
+                $restaurant_name = $restaurant['name'];
+                $cuisine_id = $restaurant['cuisine_id'];
+                $restaurant_id = $restaurant['id'];
+                if ($restaurant_id == $search_id) {
+                    $found_restaurant = new Restaurant($restaurant_name, $cuisine_id, $restaurant_id);
+                }
+            }
+            return $found_restaurant;
+        }
+
     }
 
  ?>

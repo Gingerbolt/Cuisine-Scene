@@ -120,5 +120,28 @@
             $this->assertEquals([$test_restaurant, $test_restaurant_2], $result);
         }
 
+        function testFind()
+        {
+            //Arrange
+            $name = "Home stuff";
+            $test_cuisine = new Cuisine($name);
+            $test_cuisine->save();
+            $cuisine_id = $test_cuisine->getId();
+
+            $name = "Wash the dog";
+            $test_restaurant = new Restaurant($name, $cuisine_id);
+            $test_restaurant->save();
+
+            $name_2 = "Water the lawn";
+            $test_restaurant_2 = new Restaurant($name_2, $cuisine_id);
+            $test_restaurant_2->save();
+
+            //Act
+            $result = Restaurant::find($test_restaurant->getId());
+
+            //Assert
+            $this->assertEquals($test_restaurant, $result);
+        }
+
     }
 ?>
