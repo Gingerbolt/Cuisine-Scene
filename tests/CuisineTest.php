@@ -20,6 +20,19 @@
           Restaurant::deleteAll();
         }
 
+        function testGetName()
+        {
+            //Arrange
+            $name = "Work stuff";
+            $test_cuisine = new Cuisine($name);
+
+            //Act
+            $result = $test_cuisine->getName();
+
+            //Assert
+            $this->assertEquals($name, $result);
+        }
+
         function testSave()
         {
           //Arrange
