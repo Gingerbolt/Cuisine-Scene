@@ -55,9 +55,9 @@
             $restaurants = array();
             foreach($returned_restaurants as $restaurant) {
                 $restaurant_name = $restaurant['name'];
-                $category_id = $restaurant['category_id'];
+                $cuisine_id = $restaurant['cuisine_id'];
                 $restaurant_id = $restaurant['id'];
-                $new_restaurant = new Restaurant($restaurant_name, $category_id, $restaurant_id);
+                $new_restaurant = new Restaurant($restaurant_name, $cuisine_id, $restaurant_id);
                 array_push($restaurants, $new_restaurant);
             }
             return $restaurants;

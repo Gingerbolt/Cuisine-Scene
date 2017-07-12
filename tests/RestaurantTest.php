@@ -87,8 +87,7 @@
 
             $cuisine_id = $test_cuisine->getId();
             $name = "Wash the dog";
-            $id = null;
-            $test_restaurant = new Restaurant($name, $cuisine_id, $id);
+            $test_restaurant = new Restaurant($name, $cuisine_id);
             $test_restaurant->save();
 
             //Act
@@ -97,5 +96,29 @@
             //Assert
             $this->assertEquals($cuisine_id, $result);
         }
+
+        function testGetAll()
+        {
+            //Arrange
+            $name = "Home stuff";
+            $test_cuisine = new Cuisine($name);
+            $test_cuisine->save();
+            $cuisine_id = $test_cuisine->getId();
+
+            $name = "Wash the dog";
+            $test_restaurant = new Restaurant($name, $cuisine_id);
+            $test_restaurant->save();
+
+            $name_2 = "Water the lawn";
+            $test_restaurant_2 = new Restaurant($name_2, $cuisine_id);
+            $test_restaurant_2->save();
+
+            //Act
+            $result = Restaurant::getAll();
+
+            //Assert
+            $this->assertEquals([$test_restaurant, $test_restaurant_2], $result);
+        }
+
     }
 ?>
