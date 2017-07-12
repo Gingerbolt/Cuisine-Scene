@@ -111,5 +111,29 @@
             //Assert
             $this->assertEquals($test_cuisine, $result);
         }
+
+        function testGetRestaurants()
+        {
+            //Arrange
+            $name = "Work stuff";
+            $test_cuisine = new Cuisine($name);
+            $test_cuisine->save();
+
+            $test_cuisine_id = $test_cuisine->getId();
+
+            $name = "Email client";
+            $test_restaurant = new Restaurant($name, $test_cuisine_id);
+            $test_restaurant->save();
+
+            $name_2 = "Meet with boss";
+            $test_restaurant_2 = new Restaurant($name_2, $test_cuisine_id);
+            $test_restaurant_2->save();
+
+            //Act
+            $result = $test_cuisine->getRestaurants();
+
+            //Assert
+            $this->assertEquals([$test_restaurant, $test_restaurant_2], $result);
+        }
     }
 ?>
