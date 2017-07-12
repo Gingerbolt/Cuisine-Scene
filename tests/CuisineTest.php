@@ -135,5 +135,18 @@
             //Assert
             $this->assertEquals([$test_restaurant, $test_restaurant_2], $result);
         }
+
+        function testUpdate()
+        {
+            $name = "Work stuff";
+            $test_cuisine = new Cuisine($name);
+            $test_cuisine->save();
+
+            $new_name = "Home stuff";
+
+            $test_cuisine->update($new_name);
+
+            $this->assertEquals("Home stuff", $test_cuisine->getName());
+        }
     }
 ?>
