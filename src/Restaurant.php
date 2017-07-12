@@ -35,13 +35,13 @@
         function save()
         {
 
-            // $executed = $GLOBALS['DB']->exec("INSERT INTO restaurants (name) VALUES ('{$this->getName()}', '{$this->getCuisineID()}')");
-            // if ($executed) {
-            //      $this->id= $GLOBALS['DB']->lastInsertId();
-            //      return true;
-            // } else {
-            //      return false;
-            // }
+            $executed = $GLOBALS['DB']->exec("INSERT INTO restaurants (name, cuisine_id) VALUES ('{$this->getName()}', '{$this->getCuisineID()}')");
+            if ($executed) {
+                 $this->id= $GLOBALS['DB']->lastInsertId();
+                 return true;
+            } else {
+                 return false;
+            }
         }
 
 
