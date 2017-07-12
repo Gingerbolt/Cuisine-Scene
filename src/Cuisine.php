@@ -2,13 +2,11 @@
   class Cuisine
   {
       private $name;
-      private $restaurant_id;
       private $id;
 
-      function __construct($name, $restaurant_id = null, $id = null)
+      function __construct($name, $id = null)
       {
           $this->name = $name;
-          $this->restaurant_id = $restaurant_id;
           $this->id = $id;
       }
 
@@ -22,20 +20,33 @@
           return $this->name;
       }
 
-      function getRestaurantID()
+      function getId()
+        {
+            return $this->id;
+        }
+
+      static function getAll()
       {
-          return $this->restaurant_id;
+          $returned_cuisines = $GLOBALS['DB']->query("SELECT * FROM cuisine;");
+          $cuisines = array();
+          foreach($returned_cuisines as $cuisine) {
+              $name = $cuisine['name'];
+              $id = $cuisine['id'];
+              $new_cuisine = new Cuisine($name, $id);
+              array_push($cuisines, $new_cuisine);
+          }
+          return $cuisines;
       }
 
-      function setCuisineID($new_restaurant_id)
-      {
-          $this->restaurant_id = $new_restaurant_id;
-      }
+      static function deleteAll()
+        {
+          $GLOBALS['DB']->exec("DELETE FROM cuisine;");
+        }
 
       function save()
       {
 
-          $executed = $GLOBALS['DB']->exec("INSERT INTO cuisine (name, restaurant_id) VALUES ('{$this->getName()}', '{$this->getRestaurantID()}')");
+          $executed = $GLOBALS['DB']->exec("INSERT INTO cuisine (name) VALUES ('{$this->getName()}')");
           if ($executed) {
                $this->id= $GLOBALS['DB']->lastInsertId();
                return true;

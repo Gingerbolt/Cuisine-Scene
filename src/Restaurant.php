@@ -32,6 +32,11 @@
             $this->cuisine_id = $new_cuisine_id;
         }
 
+        function getID()
+        {
+            return $this->id;
+        }
+
         function save()
         {
 
@@ -44,7 +49,24 @@
             }
         }
 
+        static function getAll()
+        {
+            $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurants;");
+            $restaurants = array();
+            foreach($returned_restaurants as $restaurant) {
+                $restaurant_name = $restaurant['name'];
+                $category_id = $restaurant['category_id'];
+                $restaurant_id = $restaurant['id'];
+                $new_restaurant = new Restaurant($restaurant_name, $category_id, $restaurant_id);
+                array_push($restaurants, $new_restaurant);
+            }
+            return $restaurants;
+        }
 
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM restaurants;");
+        }
 
     }
 
