@@ -77,5 +77,25 @@
             //Assert
             $this->assertEquals(true, is_numeric($result));
         }
+
+        function testGetCuisineID()
+        {
+            //Arrange
+            $name = "Home stuff";
+            $test_cuisine = new Cuisine($name);
+            $test_cuisine->save();
+
+            $cuisine_id = $test_cuisine->getId();
+            $name = "Wash the dog";
+            $id = null;
+            $test_restaurant = new Restaurant($name, $cuisine_id, $id);
+            $test_restaurant->save();
+
+            //Act
+            $result = $test_restaurant->getCuisineID();
+
+            //Assert
+            $this->assertEquals($cuisine_id, $result);
+        }
     }
 ?>
