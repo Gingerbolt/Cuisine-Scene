@@ -24,7 +24,8 @@
         {
           //Arrange
           $name = "Work stuff";
-          $test_restaurant = new Restaurant($name);
+          $description = "Twentieth great description goes here";
+          $test_restaurant = new Restaurant($name, $description);
 
           //Act
           $executed = $test_restaurant->save();
@@ -42,13 +43,15 @@
             $cuisine_id = $test_cuisine->getId();
 
             $name = "Wash the dog";
+            $description = "Some great description goes here";
             $id = null;
-            $test_restaurant = new Restaurant($name, $cuisine_id, $id);
+            $test_restaurant = new Restaurant($name, $description, $cuisine_id, $id);
             $test_restaurant->save();
 
             $name_2 = "Water the lawn";
+            $description_2 = "Another great description goes here";
             $id_2 = null;
-            $test_restaurant_2 = new Restaurant($name_2, $cuisine_id, $id);
+            $test_restaurant_2 = new Restaurant($name_2, $description_2, $cuisine_id, $id);
             $test_restaurant_2->save();
 
             //Act
@@ -67,8 +70,9 @@
             $test_cuisine->save();
 
             $name = "Wash the dog";
+            $description = "Some great description goes here 1";
             $cuisine_id = $test_cuisine->getId();
-            $test_restaurant = new Restaurant($name, $cuisine_id);
+            $test_restaurant = new Restaurant($name, $description, $cuisine_id);
             $test_restaurant->save();
 
             //Act
@@ -87,7 +91,8 @@
 
             $cuisine_id = $test_cuisine->getId();
             $name = "Wash the dog";
-            $test_restaurant = new Restaurant($name, $cuisine_id);
+            $description = "Some great description goes here 2";
+            $test_restaurant = new Restaurant($name, $description, $cuisine_id);
             $test_restaurant->save();
 
             //Act
@@ -106,11 +111,13 @@
             $cuisine_id = $test_cuisine->getId();
 
             $name = "Wash the dog";
-            $test_restaurant = new Restaurant($name, $cuisine_id);
+            $description = "Some great description goes here 3";
+            $test_restaurant = new Restaurant($name, $description, $cuisine_id);
             $test_restaurant->save();
 
             $name_2 = "Water the lawn";
-            $test_restaurant_2 = new Restaurant($name_2, $cuisine_id);
+            $description_2 = "Another great description goes here 3";
+            $test_restaurant_2 = new Restaurant($name_2, $description_2, $cuisine_id);
             $test_restaurant_2->save();
 
             //Act
@@ -129,11 +136,13 @@
             $cuisine_id = $test_cuisine->getId();
 
             $name = "Wash the dog";
-            $test_restaurant = new Restaurant($name, $cuisine_id);
+            $description = "Some great description goes here 4";
+            $test_restaurant = new Restaurant($name, $description, $cuisine_id);
             $test_restaurant->save();
 
             $name_2 = "Water the lawn";
-            $test_restaurant_2 = new Restaurant($name_2, $cuisine_id);
+            $description_2 = "Another great description goes here 4";
+            $test_restaurant_2 = new Restaurant($name_2, $description_2, $cuisine_id);
             $test_restaurant_2->save();
 
             //Act

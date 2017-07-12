@@ -122,11 +122,13 @@
             $test_cuisine_id = $test_cuisine->getId();
 
             $name = "Email client";
-            $test_restaurant = new Restaurant($name, $test_cuisine_id);
+            $description = "One great description goes here";
+            $test_restaurant = new Restaurant($name, $description, $test_cuisine_id);
             $test_restaurant->save();
 
             $name_2 = "Meet with boss";
-            $test_restaurant_2 = new Restaurant($name_2, $test_cuisine_id);
+            $description_2 = "Second great description goes here";
+            $test_restaurant_2 = new Restaurant($name_2, $description_2, $test_cuisine_id);
             $test_restaurant_2->save();
 
             //Act
@@ -176,8 +178,9 @@
             $test_cuisine->save();
 
             $name = "Build website";
+            $description = "A third great description goes here";
             $cuisine_id = $test_cuisine->getId();
-            $test_restaurant = new Restaurant($name, $cuisine_id);
+            $test_restaurant = new Restaurant($name, $description, $cuisine_id);
             $test_restaurant->save();
 
 
