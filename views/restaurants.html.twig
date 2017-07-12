@@ -11,13 +11,19 @@
                 <ul>
                     {% for restaurant in restaurants %}
                         <li>{{ restaurant.getName }}</li>
+                        <ul>
+                          <li>{{ restaurant.getDescription }}</li>
+                        </ul>
                     {% endfor %}
                 </ul>
             {% endif %}
 
             <form action='/restaurants' method='post'>
-                <label for='name'>Restaurant Name</label>
+                <label for='name'>Restaurant Name: </label>
                 <input id='name' name='name' type='text' required>
+
+                <label for='description'>Restaurant Description: </label>
+                <input id='description' name='description' type='text' required>
 
                 <button type='submit' class='btn-success'>Add restaurant</button>
             </form>
