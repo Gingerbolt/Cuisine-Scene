@@ -43,7 +43,7 @@
           $executed = $test_cuisine->save();
 
           // Assert
-          $this->assertTrue($executed, "Category not successfully saved to database");
+          $this->assertTrue($executed, "Cuisine not successfully saved to database");
         }
 
         function testGetId()
@@ -147,6 +147,45 @@
             $test_cuisine->update($new_name);
 
             $this->assertEquals("Home stuff", $test_cuisine->getName());
+        }
+
+        function testDelete()
+        {
+            //Arrange
+            $name = "Work stuff";
+            $test_cuisine = new Cuisine($name);
+            $test_cuisine->save();
+
+            $name_2 = "Home stuff";
+            $test_cuisine_2 = new Cuisine($name_2);
+            $test_cuisine_2->save();
+
+
+            //Act
+            $test_cuisine->delete();
+
+            //Assert
+            $this->assertEquals([$test_cuisine_2], Cuisine::getAll());
+        }
+
+        function testDeleteCuisineTasks()
+        {
+            //Arrange
+            $name = "Work stuff";
+            $test_cuisine = new Cuisine($name);
+            $test_cuisine->save();
+
+            $name = "Build website";
+            $cuisine_id = $test_cuisine->getId();
+            $test_restaurant = new Restaurant($name, $cuisine_id);
+            $test_restaurant->save();
+
+
+            //Act
+            $test_cuisine->delete();
+
+            //Assert
+            $this->assertEquals([], Restaurant::getAll());  
         }
     }
 ?>

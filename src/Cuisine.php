@@ -95,5 +95,19 @@
                return false;
             }
         }
+
+        function delete()
+        {
+            $executed = $GLOBALS['DB']->exec("DELETE FROM cuisine WHERE id = {$this->getId()};");
+             if (!$executed) {
+                 return false;
+             }
+             $executed = $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE cuisine_id = {$this->getId()};");
+             if (!$executed) {
+                 return false;
+             } else {
+                 return true;
+             }
+        }
   }
  ?>
