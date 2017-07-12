@@ -94,5 +94,22 @@
             //Assert
             $this->assertEquals([], $result);
         }
+
+        function testFind()
+        {
+            //Arrange
+            $name = "Wash the dog";
+            $name2 = "Home stuff";
+            $test_cuisine = new Cuisine($name);
+            $test_cuisine->save();
+            $test_cuisine_2 = new Cuisine($name2);
+            $test_cuisine_2->save();
+
+            //Act
+            $result = Cuisine::find($test_cuisine->getId());
+
+            //Assert
+            $this->assertEquals($test_cuisine, $result);
+        }
     }
 ?>

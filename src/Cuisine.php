@@ -54,5 +54,21 @@
                return false;
           }
       }
+
+      static function find($search_id)
+        {
+            $found_cuisine = null;
+            $returned_cuisines = $GLOBALS['DB']->prepare("SELECT * FROM cuisine WHERE id = :id");
+            $returned_cuisines->bindParam(':id', $search_id, PDO::PARAM_STR);
+            $returned_cuisines->execute();
+            foreach($returned_cuisines as $cuisine) {
+                $cuisine_name = $cuisine['name'];
+                $cuisine_id = $cuisine['id'];
+                if ($cuisine_id == $search_id) {
+                  $found_cuisine = new Cuisine($cuisine_name, $cuisine_id);
+                }
+            }
+            return $found_cuisine;
+        }
   }
  ?>
