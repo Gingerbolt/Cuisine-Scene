@@ -168,7 +168,7 @@
             $this->assertEquals([$test_cuisine_2], Cuisine::getAll());
         }
 
-        function testDeleteCuisineTasks()
+        function testDeleteCuisineRestaurants()
         {
             //Arrange
             $name = "Work stuff";
@@ -185,7 +185,7 @@
             $test_cuisine->delete();
 
             //Assert
-            $this->assertEquals([], Restaurant::getAll());  
+            $this->assertEquals([], Restaurant::getAll());
         }
     }
 ?>

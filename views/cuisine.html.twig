@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>Bestaurants.edu</title>
+    </head>
+    <body>
+        <h1>{{ cuisine.getName }}</h1>
+
+        {% if restaurants is not empty %}
+            <p>Here are the restaurants:</p>
+            <ul>
+                {% for restaurant in restaurants %}
+                    <li>{{ restaurant.getName }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <h4>Add a restaurant</h4>
+
+        <form name="restaurant_name_input" action='/restaurants' method='post'>
+            <input id="cuisine_id" name="cuisine_id" type="hidden" value="{{ cuisine.getId() }}">
+            <label for='name'>Restaurant Name:</label>
+            <input id='name' name='name' type='text'>
+
+            <button name="restaurant_name_input" type='submit'>Add restaurant</button>
+        </form>
+        <p><a href="/cuisines/{{ cuisine.getId }}/edit">Edit this cuisine group</a></p>
+        <p><a href='/'>Home</a></p>
+    </body>
+</html>
