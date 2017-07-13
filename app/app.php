@@ -22,9 +22,9 @@
         return $app['twig']->render('index.html.twig', array('cuisines' => Cuisine::getAll()));
     });
 
-    $app->get("/restaurants", function() use ($app) {
-        return $app['twig']->render('restaurants.html.twig', array('restaurants' => Restaurant::getAll()));
-    });
+    // $app->get("/restaurants", function() use ($app) {
+    //     return $app['twig']->render('restaurants.html.twig', array('restaurants' => Restaurant::getAll()));
+    // });
 
     $app->post("/restaurants", function() use ($app) {
       $name = $_POST['name'];
