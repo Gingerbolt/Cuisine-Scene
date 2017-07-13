@@ -100,5 +100,22 @@
             $this->assertEquals($title, $result);
         }
 
+        function testGetId()
+        {
+            //Arrange
+            $title = "Work stuff";
+            $stars = 1;
+            $content = "even more stupid stuff here";
+            $restaurant_id = 16;
+            $test_review = new Review($title, $stars, $content, $restaurant_id);
+            $test_review->save();
+
+            //Act
+            $result = $test_review->getId();
+
+            //Assert
+            $this->assertEquals(true, is_numeric($result));
+        }
+
     }
 ?>

@@ -16,6 +16,11 @@
             $this->restaurant_id = $restaurant_id;
         }
 
+        function getId()
+          {
+              return $this->id;
+          }
+
         function setTitle($new_title)
         {
             $this->title = (string) $new_title;
