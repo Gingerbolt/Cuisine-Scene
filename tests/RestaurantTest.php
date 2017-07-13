@@ -6,6 +6,7 @@
 
     require_once "src/Restaurant.php";
     require_once "src/Cuisine.php";
+    require_once "src/Review.php";
 
     $server = 'mysql:host=localhost:8889;dbname=bestaurants_test';
     $username = 'root';
@@ -16,22 +17,23 @@
     {
         protected function tearDown()
         {
-          Cuisine::deleteAll();
-          Restaurant::deleteAll();
+            Cuisine::deleteAll();
+            Restaurant::deleteAll();
+            Review::deleteAll();
         }
 
         function testSave()
         {
-          //Arrange
-          $name = "Work stuff";
-          $description = "Twentieth great description goes here";
-          $test_restaurant = new Restaurant($name, $description);
+            //Arrange
+            $name = "Work stuff";
+            $description = "Twentieth great description goes here";
+            $test_restaurant = new Restaurant($name, $description);
 
-          //Act
-          $executed = $test_restaurant->save();
+            //Act
+            $executed = $test_restaurant->save();
 
-          // Assert
-          $this->assertTrue($executed, "Category not successfully saved to database");
+            // Assert
+            $this->assertTrue($executed, "Category not successfully saved to database");
         }
 
         function testDeleteAll()

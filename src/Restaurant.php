@@ -51,7 +51,7 @@
 
         function save()
         {
-            $executed = $GLOBALS['DB']->exec("INSERT INTO restaurants (name, description, cuisine_id) VALUES ('{$this->getName()}', '{$this->getDescription()}', '{$this->getCuisineID()}')");
+            $executed = $GLOBALS['DB']->exec("INSERT INTO restaurants (name, description, cuisine_id) VALUES ('{$this->getName()}', '{$this->getDescription()}', '{$this->getCuisineID()}');");
             if ($executed) {
                  $this->id= $GLOBALS['DB']->lastInsertId();
                  return true;
@@ -82,7 +82,7 @@
 
         static function find($search_id)
         {
-            $returned_restaurants = $GLOBALS['DB']->prepare("SELECT * FROM restaurants WHERE id = :id");
+            $returned_restaurants = $GLOBALS['DB']->prepare("SELECT * FROM restaurants WHERE id = :id;");
             $returned_restaurants->bindParam(':id', $search_id, PDO::PARAM_STR);
             $returned_restaurants->execute();
             foreach ($returned_restaurants as $restaurant) {
