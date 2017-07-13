@@ -7,9 +7,10 @@
 
         {% if restaurants is not empty %}
             <p>Here are the restaurants:</p>
+            <p><em>Click on restaurant names to read or leave reviews</em></p>
             <ul>
                 {% for restaurant in restaurants %}
-                    <li>{{ restaurant.getName }}</li>
+                    <li><a href="/restaurant/{{ restaurant.getId }}">{{ restaurant.getName }}</a></li>
                     <ul>
                       <li>{{ restaurant.getDescription }}</li>
                     </ul>

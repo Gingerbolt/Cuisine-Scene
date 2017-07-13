@@ -3,6 +3,7 @@
     require_once __DIR__."/../vendor/autoload.php";
     require_once __DIR__."/../src/Restaurant.php";
     require_once __DIR__."/../src/Cuisine.php";
+    require_once __DIR__."/../src/Review.php";
 
     $app = new Silex\Application();
 
@@ -22,19 +23,31 @@
         return $app['twig']->render('index.html.twig', array('cuisines' => Cuisine::getAll()));
     });
 
-    // $app->get("/restaurants", function() use ($app) {
-    //     return $app['twig']->render('restaurants.html.twig', array('restaurants' => Restaurant::getAll()));
-    // });
+    $app->get("/restaurant/{id}", function($id) use ($app) {
+        $restaurant = Restaurant::find($id);
+        return $app['twig']->render('restaurants.html.twig', array('restaurant' => $restaurant, 'reviews' => $restaurant->getReviews()));
+    });
+
+    $app->post("/review", function() use ($app) {
+      $title = $_POST['title'];
+      $stars = $_POST['stars'];
+      $content = $_POST['content'];
+      $restaurant_id = $_POST['restaurant_id'];
+      $new_review = New Review($title, $stars, $content, $restaurant_id, $id = null);
+      $new_review->save();
+      $restaurant = Restaurant::find($restaurant_id);
+      return $app['twig']->render('restaurants.html.twig', array('restaurant' => $restaurant, 'reviews' => $restaurant->getReviews()));
+    });
 
     $app->post("/restaurants", function() use ($app) {
       $name = $_POST['name'];
       $description = $_POST['description'];
       $cuisine_id = $_POST['cuisine_id'];
-      $task = new Restaurant($name, $description, $cuisine_id, $id = null);
-      $task->save();
+      $restaurant = new Restaurant($name, $description, $cuisine_id, $id = null);
+      $restaurant->save();
       $cuisine = Cuisine::find($cuisine_id);
       return $app['twig']->render('cuisine.html.twig', array('cuisine' => $cuisine, 'restaurants' => $cuisine->getRestaurants()));
-  });
+    });
 
     $app->get("/cuisines", function() use ($app) {
         return $app['twig']->render('cuisines.html.twig', array('cuisines' => Cuisine::getAll()));

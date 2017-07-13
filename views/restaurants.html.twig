@@ -1,37 +1,41 @@
+
 <html>
     <head>
         <title>Bestaurants.edu</title>
     </head>
     <body>
-        <div class='container'>
-            <h1>Bestaurants.edu</h1>
+        <h1>Reviews for {{ restaurant.getName }}</h1>
 
-            {% if restaurants is not empty %}
-                <p>Here are all your restaurants:</p>
-                <ul>
-                    {% for restaurant in restaurants %}
-                        <li>{{ restaurant.getName }}</li>
-                        <ul>
-                          <li>{{ restaurant.getDescription }}</li>
-                        </ul>
-                    {% endfor %}
-                </ul>
-            {% endif %}
+        {% if reviews is not empty %}
+            <p>Here are all your reviews:</p>
 
-            <form action='/restaurants' method='post'>
-                <label for='name'>Restaurant Name: </label>
-                <input id='name' name='name' type='text' required>
+              {% for review in reviews %}
+                  <h2>{{ review.getTitle }}</h2>
+                  <p>{{ review.getStars }} Stars</p>
+                  <p>{{ review.getContent }}</p><br>
+              {% endfor %}
 
-                <label for='description'>Restaurant Description: </label>
-                <input id='description' name='description' type='text' required>
+        {% endif %}
 
-                <button type='submit' class='btn-success'>Add restaurant</button>
-            </form>
-            <form action='/delete_restaurants' method='post'>
-                <button type='submit' class='btn-info'>Clear</button>
-            </form>
+        <form name='add_review' action='/review' method='post'>
+            <input id="restaurant_id" name="restaurant_id" type="hidden" value="{{ restaurant.getId() }}">
 
-            <p><a href='/'>Home</a></p>
-        </div>
+            <label for='title'>Review title</label>
+            <input id='title' name='title' type='text' required>
+            <label for='stars'> Number of stars </label>
+            <select name='stars'>
+              <option value=1>1</option>
+              <option value=2>2</option>
+              <option value=3>3</option>
+              <option value=4>4</option>
+              <option value=5>5</option>
+            </select>
+            <label for='content'>Review content</label>
+            <input id='content' name='content' type='text' required>
+
+            <button name='add_review' type='submit'>Add review</button>
+        </form>
+
+        <p><a href='/'>Home</a></p>
     </body>
 </html>
