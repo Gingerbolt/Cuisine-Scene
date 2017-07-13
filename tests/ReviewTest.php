@@ -117,5 +117,28 @@
             $this->assertEquals(true, is_numeric($result));
         }
 
+        function testGetRestaurantId()
+        {
+            //Arrange
+            $name = "Home stuff";
+            $description = "radness";
+            $test_restaurant = new Restaurant($name, $description);
+            $test_restaurant->save();
+
+            $restaurant_id = $test_restaurant->getId();
+
+            $title = "Wash the dog";
+            $stars = 4;
+            $content = "Some great content goes here 2";
+            $test_review = new Review($title, $stars, $content, $restaurant_id);
+            $test_review->save();
+
+            //Act
+            $result = $test_review->getRestaurantId();
+
+            //Assert
+            $this->assertEquals($restaurant_id, $result);
+        }
+
     }
 ?>
