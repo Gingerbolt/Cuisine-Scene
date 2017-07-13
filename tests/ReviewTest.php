@@ -163,5 +163,46 @@
             $this->assertEquals($test_review, $result);
         }
 
+        function testUpdateTitle()
+        {
+            $title = "Home stuff";
+            $stars = 4;
+            $content = "wowzer";
+            $restaurant_id = 5;
+            $test_review = new Review($title, $stars, $content, $restaurant_id);
+            $test_review->save();
+
+            $new_title = "Home stuff";
+
+            $test_review->updateTitle($new_title);
+
+            $this->assertEquals("Home stuff", $test_review->getTitle());
+        }
+
+        function testDelete()
+        {
+            //Arrange
+            $title = "Wash the dog";
+            $title2 = "Home stuff";
+            $stars = 4;
+            $stars_2 = 2;
+            $content = "wowzer";
+            $content_2 = "bowzer";
+            $restaurant_id = 5;
+            $restaurant_id_2 = 9;
+            $test_review = new Review($title, $stars, $content, $restaurant_id);
+            $test_review->save();
+            $test_review_2 = new Review($title2, $stars_2, $content_2, $restaurant_id_2);
+            $test_review_2->save();
+
+
+            //Act
+            $test_review->delete();
+
+            //Assert
+            $this->assertEquals([$test_review_2], Review::getAll());
+        }
+
+
     }
 ?>

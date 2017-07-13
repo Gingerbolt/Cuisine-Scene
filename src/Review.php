@@ -91,26 +91,47 @@
 
         static function deleteAll()
           {
-            $GLOBALS['DB']->exec("DELETE FROM reviews;");
+              $GLOBALS['DB']->exec("DELETE FROM reviews;");
           }
 
-          static function find($search_id)
-            {
-                $found_review = null;
-                $returned_reviews = $GLOBALS['DB']->prepare("SELECT * FROM reviews WHERE id = :id;");
-                $returned_reviews->bindParam(':id', $search_id, PDO::PARAM_STR);
-                $returned_reviews->execute();
-                foreach($returned_reviews as $review) {
-                    $review_title = $review['title'];
-                    $review_stars = $review['stars'];
-                    $review_content = $review['content'];
-                    $review_restaurant_id = $review['restaurant_id'];
-                    $review_id = $review['id'];
-                    if ($review_id == $search_id) {
-                      $found_review = new Review($review_title, $review_stars, $review_content, $review_restaurant_id, $review_id);
-                    }
-                }
-                return $found_review;
-            }
+        static function find($search_id)
+          {
+              $found_review = null;
+              $returned_reviews = $GLOBALS['DB']->prepare("SELECT * FROM reviews WHERE id = :id;");
+              $returned_reviews->bindParam(':id', $search_id, PDO::PARAM_STR);
+              $returned_reviews->execute();
+              foreach($returned_reviews as $review) {
+                  $review_title = $review['title'];
+                  $review_stars = $review['stars'];
+                  $review_content = $review['content'];
+                  $review_restaurant_id = $review['restaurant_id'];
+                  $review_id = $review['id'];
+                  if ($review_id == $search_id) {
+                    $found_review = new Review($review_title, $review_stars, $review_content, $review_restaurant_id, $review_id);
+                  }
+              }
+              return $found_review;
+          }
+
+          function updateTitle($new_title)
+          {
+              $executed = $GLOBALS['DB']->exec("UPDATE reviews SET title = '{$new_title}' WHERE id = {$this->getId()};");
+              if ($executed) {
+                 $this->setTitle($new_title);
+                 return true;
+              } else {
+                 return false;
+              }
+          }
+
+          function delete()
+          {
+              $executed = $GLOBALS['DB']->exec("DELETE FROM reviews WHERE id = {$this->getId()};");
+               if (!$executed) {
+                   return false;
+               } else {
+                   return true;
+               }
+          }
     }
 ?>
