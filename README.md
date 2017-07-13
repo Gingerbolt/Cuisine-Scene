@@ -31,13 +31,12 @@ _The app will use PHPunit,  Silex, and Twig._
   * type 'git clone' then paste the repository link and press enter
   * type 'cd Bestaurants' to access the path on your computer
   * type 'composer install' in terminal to download dependencies
-  * type 'cd web' to enter the web folder, then type 'php -S localhost:8000' to open local server
-* In your browser, enter 'localhost:8000' to view the webpage on your browser
-* To view and edit database:
-  * Open MAMP and set Apache Port to 8888, and Msql port to 8889
+* To view app in browser and to view and edit database:
+* Open MAMP and set Apache Port to 8888, and Msql port to 8889
   * In MAMP click Open WebStart page
   * In tools menu of start page, click phpMyAdmin
   * Once in phpmyadmin page, click Import tab, click browse button, then navigate to the bestaurants.sql file in the project directory
+  * In your browser, enter 'localhost:8888' to view the webpage on your browser
 
 
 
