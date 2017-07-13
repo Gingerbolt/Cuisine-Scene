@@ -31,7 +31,7 @@ _The app will use PHPunit,  Silex, and Twig._
   * type 'git clone' then paste the repository link and press enter
   * type 'cd Bestaurants' to access the path on your computer
   * type 'composer install' in terminal to download dependencies
-* To view app in browser and to view and edit database:
+* To view app in browser:
 * Open MAMP and set Apache Port to 8888, and Msql port to 8889
   * In MAMP click Open WebStart page
   * In tools menu of start page, click phpMyAdmin
