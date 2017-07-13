@@ -84,5 +84,21 @@
             $this->assertEquals([$test_review, $test_review_2], $result);
         }
 
+        function testGetTitle()
+        {
+            //Arrange
+            $title = "Work stuff";
+            $stars = 1;
+            $content = "even more stupid stuff here";
+            $restaurant_id = 16;
+            $test_review = new Review($title, $stars, $content, $restaurant_id);
+
+            //Act
+            $result = $test_review->getTitle();
+
+            //Assert
+            $this->assertEquals($title, $result);
+        }
+
     }
 ?>
