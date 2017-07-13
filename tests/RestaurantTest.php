@@ -154,5 +154,34 @@
             $this->assertEquals($test_restaurant, $result);
         }
 
+        function testGetReviews()
+        {
+            //Arrange
+            $name = "Work stuff";
+            $description = "worst evah";
+            $test_restaurant = new Restaurant($name, $description);
+            $test_restaurant->save();
+
+            $test_restaurant_id = $test_restaurant->getId();
+
+            $title = "Email client";
+            $content = "One great content goes here";
+            $stars = 4;
+            $test_review = new Review($title, $stars, $content, $test_restaurant_id);
+            $test_review->save();
+
+            $title_2 = "Meet with boss";
+            $stars_2 = 1;
+            $content_2 = "Second great content goes here";
+            $test_review_2 = new Review($title_2, $stars_2, $content_2, $test_restaurant_id);
+            $test_review_2->save();
+
+            //Act
+            $result = $test_restaurant->getReviews();
+
+            //Assert
+            $this->assertEquals([$test_review, $test_review_2], $result);
+        }
+
     }
 ?>
