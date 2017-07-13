@@ -124,6 +124,39 @@
               }
           }
 
+          function updateStars($new_stars)
+          {
+              $executed = $GLOBALS['DB']->exec("UPDATE reviews SET stars = '{$new_stars}' WHERE id = {$this->getId()};");
+              if ($executed) {
+                 $this->setStars($new_stars);
+                 return true;
+              } else {
+                 return false;
+              }
+          }
+
+          function updateContent($new_content)
+          {
+              $executed = $GLOBALS['DB']->exec("UPDATE reviews SET content = '{$new_content}' WHERE id = {$this->getId()};");
+              if ($executed) {
+                 $this->setContent($new_content);
+                 return true;
+              } else {
+                 return false;
+              }
+          }
+
+          function updateRestaurantId($new_restaurant_id)
+          {
+              $executed = $GLOBALS['DB']->exec("UPDATE reviews SET restaurant_id = '{$new_restaurant_id}' WHERE id = {$this->getId()};");
+              if ($executed) {
+                 $this->setRestaurantId($new_restaurant_id);
+                 return true;
+              } else {
+                 return false;
+              }
+          }
+
           function delete()
           {
               $executed = $GLOBALS['DB']->exec("DELETE FROM reviews WHERE id = {$this->getId()};");

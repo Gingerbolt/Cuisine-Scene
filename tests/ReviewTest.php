@@ -179,6 +179,54 @@
             $this->assertEquals("Home stuff", $test_review->getTitle());
         }
 
+        function testUpdateStars()
+        {
+            $title = "Home stuff";
+            $stars = 4;
+            $content = "wowzer";
+            $restaurant_id = 5;
+            $test_review = new Review($title, $stars, $content, $restaurant_id);
+            $test_review->save();
+
+            $new_stars = 4;
+
+            $test_review->updateStars($new_stars);
+
+            $this->assertEquals(4, $test_review->getStars());
+        }
+
+        function testUpdateContent()
+        {
+            $title = "Home stuff";
+            $stars = 4;
+            $content = "wowzer";
+            $restaurant_id = 5;
+            $test_review = new Review($title, $stars, $content, $restaurant_id);
+            $test_review->save();
+
+            $new_content = "Home stuff";
+
+            $test_review->updateContent($new_content);
+
+            $this->assertEquals("Home stuff", $test_review->getContent());
+        }
+
+        function testUpdateRestaurantId()
+        {
+            $title = "Home stuff";
+            $stars = 4;
+            $content = "wowzer";
+            $restaurant_id = 5;
+            $test_review = new Review($title, $stars, $content, $restaurant_id);
+            $test_review->save();
+
+            $new_restaurant_id = 12;
+
+            $test_review->updateRestaurantId($new_restaurant_id);
+
+            $this->assertEquals(12, $test_review->getRestaurantId());
+        }
+
         function testDelete()
         {
             //Arrange
