@@ -11,8 +11,10 @@
 
               {% for review in reviews %}
                   <h2>{{ review.getTitle }}</h2>
-                  <p>{{ review.getStars }} Stars</p>
-                  <p>{{ review.getContent }}</p><br>
+                  {% block A%}
+                  <h4>Star Rating:</h4><p> {% set var = review.getStars %} {% for i in 1..var %} <img src="/../web/img/starz.png"> {% endfor %} </p>
+                  {% endblock %}
+                  <h4>Review:</h4><p> {{ review.getContent }} </p><br>
               {% endfor %}
 
         {% endif %}
